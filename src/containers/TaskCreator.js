@@ -53,7 +53,7 @@ function TaskCreator() {
                 onFocus={handleFocus}
                 value={time}
                 id="timeField"
-                 type="number"/>
+                type="number"/>
             </label>
             <button type="button" id="start" onClick={startTimer}>START</button>
             <button type="button" id="stop" onClick={addNewTask}>STOP</button>

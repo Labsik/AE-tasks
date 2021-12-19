@@ -2,22 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {createStore, compose} from "redux";
+import {createStore} from "redux";
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { rootReducer } from './redux/reducer';
 
-window.devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
 
-
-const store = createStore(rootReducer, compose(window.devToolsExtension ? window.devToolsExtension() : (f) => f,))
+const store = createStore(rootReducer)
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <App />
+      <App />
     </Provider>
-
   </React.StrictMode>,
   document.getElementById('root')
 );

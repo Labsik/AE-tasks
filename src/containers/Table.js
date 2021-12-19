@@ -4,49 +4,45 @@ const USERS_URL = 'https://example.com/api/users';
 
 export default function Table () {
 
-const [tableData, setTableData] = useState([]);
+ const [tableData, setTableData] = useState([]);
  const [isLoading, setIsLoading] = useState(false)
  const [currentPage, setCurrentPage] = useState(0);
 
-const fetchData = async() => {
-setIsLoading(true);
-const response = await(fetch(`${USERS_URL}?page=${currentPage}`));
-const data = await response.json();
-setIsLoading(false)
-setTableData(data.results);}
+  const fetchData = async() => {
+  setIsLoading(true);
 
-useEffect(() => {
-fetchData(currentPage)
-}, [currentPage])
+  const response = await(fetch(`${USERS_URL}?page=${currentPage}`));
+  const data = await response.json();
 
-const tableInfo =  tableData && tableData.map(t =>
-<tr key={t.id}>
-<td>
-{t.id}
-</td>
-<td>
-{t.firstName}
-</td>
-<td>
-{t.lastName}
-</td>
-</tr>
-);
+  setIsLoading(false)
+  setTableData(data.results);}
 
-const firstPage = () => {
-  setCurrentPage(0)
-};
-const prevPage = () => {
- setCurrentPage(currentPage - 1)
-};
+  useEffect(() => {
+  fetchData(currentPage)
+  }, [currentPage])
 
-const nextPage = () => {
-setCurrentPage(currentPage + 1)
-}
+  const tableInfo =  tableData && tableData.map(t =>
+  <tr key={t.id}>
+  <td>{t.id}</td>
+  <td>{t.firstName}</td>
+  <td>{t.lastName}</td>
+  </tr>
+  );
 
-const lastPage = () => {
-  setCurrentPage(3)
-};
+  const firstPage = () => {
+    setCurrentPage(0)
+  };
+  const prevPage = () => {
+  setCurrentPage(currentPage - 1)
+  };
+
+  const nextPage = () => {
+  setCurrentPage(currentPage + 1)
+  }
+
+  const lastPage = () => {
+    setCurrentPage(3)
+  };
 
   return (
     <div>
